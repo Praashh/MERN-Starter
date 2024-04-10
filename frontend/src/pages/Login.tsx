@@ -15,33 +15,40 @@ import { Loader2 } from "lucide-react";
 import { toast } from "@/components/ui/use-toast";
 import { ToastAction } from "@radix-ui/react-toast";
 
-export function SignUpForm() {
+export function LoginForm() {
   const navigate = useNavigate();
-  const [name, setName] = useState<string>("");
   const [progress, setProgress] = useState(false);
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
   const handleClick = async () => {
     setProgress(true);
-    console.log(name, email, password, "clicked");
-    const response = await axios.post(
-      "http://localhost:3001/api/v1/user/register",
-      {
-        name: name,
-        email: email,
-        password: password,
+    const token = `Bearer ${localStorage.getItem("token")}`;
+
+    try {
+      const response = await axios.post(
+        "http://localhost:3001/api/v1/user/login",
+        {
+          email: email,
+          password: password,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: token,
+          },
+        }
+      );
+
+      if (response.status === 200) {
+        setProgress(false);
+        toast({
+          title: "Account created successfully",
+        });
+        navigate("/");
       }
-    );
-    console.log(response);
-    if (response.status === 201) {
-      setProgress(false);
-      toast({
-        title: "Account created successfully",
-      });
-      localStorage.setItem("token", response.data.token);
-      navigate("/");
-    } else {
+    } catch (error) {
+      console.log(error);
       setProgress(false);
       toast({
         variant: "destructive",
@@ -55,22 +62,13 @@ export function SignUpForm() {
     <div className="h-screen w-full flex justify-center items-center">
       <Card className="mx-auto max-w-sm">
         <CardHeader>
-          <CardTitle className="text-xl">Sign Up</CardTitle>
+          <CardTitle className="text-xl">Sign In</CardTitle>
           <CardDescription>
-            Enter your information to create an account
+            Enter your information to Login
           </CardDescription>
         </CardHeader>
         <CardContent>
           <div className="grid gap-4">
-            <div className="grid gap-2">
-              <Label htmlFor="name">Name</Label>
-              <Input
-                id="name"
-                placeholder="Enter your name"
-                required
-                onChange={(e) => setName(e.target.value)}
-              />
-            </div>
             <div className="grid gap-2">
               <Label htmlFor="email">Email</Label>
               <Input
@@ -91,13 +89,13 @@ export function SignUpForm() {
               />
             </div>
             <Button type="submit" className="w-full" onClick={handleClick}>
-              {progress ?  <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : "Create an account"}
+            {progress ?  <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : "Login"}
             </Button>
           </div>
           <div className="mt-4 text-center text-sm">
-            Already have an account?{" "}
-            <Link to={"/login"} className="underline">
-              Sign in
+            Don't have an account?{" "}
+            <Link to={"/signup"} className="underline">
+              create an account
             </Link>
           </div>
         </CardContent>
