@@ -1,10 +1,13 @@
+import Navbar from "@/components/ui/main-nav"
+import { GlobeDemo } from "./Globe"
 
 const Home = () => {
   return (
-    <div>
+    <>
         {/* <BackgroundGradientAnimation/> */}
-        <h1>Hello</h1>
-    </div>
+        <Navbar/>
+        <GlobeDemo/>
+    </>
   )
 }
 

@@ -27,7 +27,7 @@ export function LoginForm() {
 
     try {
       const response = await axios.post(
-        "http://localhost:3001/api/v1/user/login",
+        `${import.meta.env.VITE_HOST_URL}/api/v1/user/login`,
         {
           email: email,
           password: password,
@@ -43,12 +43,12 @@ export function LoginForm() {
       if (response.status === 200) {
         setProgress(false);
         toast({
-          title: "Account created successfully",
+          title: "Logged in successfully",
         });
+        localStorage.setItem("user", JSON.stringify(response.data.user.id));
         navigate("/");
       }
     } catch (error) {
-      console.log(error);
       setProgress(false);
       toast({
         variant: "destructive",

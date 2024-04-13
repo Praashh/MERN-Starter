@@ -26,20 +26,20 @@ export function SignUpForm() {
     setProgress(true);
     console.log(name, email, password, "clicked");
     const response = await axios.post(
-      "http://localhost:3001/api/v1/user/register",
+      `${import.meta.env.VITE_HOST_URL}/api/v1/user/register`,
       {
         name: name,
         email: email,
         password: password,
       }
     );
-    console.log(response);
     if (response.status === 201) {
       setProgress(false);
       toast({
         title: "Account created successfully",
       });
       localStorage.setItem("token", response.data.token);
+      localStorage.setItem("user", JSON.stringify(response.data.user.id));
       navigate("/");
     } else {
       setProgress(false);

@@ -9,7 +9,6 @@ function App() {
   return (
     <>
      <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-
       <BrowserRouter>
           <Routes>
             <Route element={<Home/>} path='/'></Route>
