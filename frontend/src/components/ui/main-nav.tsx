@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
-import { NavigationMenu } from "./navigation-menu";
+// import { NavigationMenu } from "./navigation-menu";
 import ProfileHeader from "./ProfileHeader";
 import { MountainIcon } from "./nav-icon";
-import { ModeToggle } from "../mode-toggle";
+// import { ModeToggle } from "../mode-toggle";
 
 export default function Navbar() {
   
@@ -14,14 +14,14 @@ export default function Navbar() {
             <MountainIcon className="h-6 w-6" />
             <span className="sr-only">Acme Inc</span>
           </Link>
-          <nav className="hidden md:flex gap-7">
+          {/* <nav className="hidden md:flex gap-7">
            <NavigationMenu title="Write your experience" link="/write-new"/>
             <NavigationMenu title="Recent experiences" link="/recent"/>
             <NavigationMenu title="Your bookmarks" link="/bookmarks"/>
-          </nav>
+          </nav> */}
           <div className="flex gap-3 items-center">
           <ProfileHeader/>
-          <ModeToggle/>
+          {/* <ModeToggle/> */}
           </div>
         </div>
       </div>

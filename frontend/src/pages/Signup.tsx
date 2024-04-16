@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Loader2 } from "lucide-react";
 import { toast } from "@/components/ui/use-toast";
 import { ToastAction } from "@radix-ui/react-toast";
@@ -21,6 +21,18 @@ export function SignUpForm() {
   const [progress, setProgress] = useState(false);
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+
+  useEffect(() => {
+    if(localStorage.getItem("token")){
+      toast({
+        variant: "destructive",
+        title: "You are already logged in",
+      });
+      setTimeout(() => {
+        navigate("/");
+      }, 1000);
+    }
+  }, []);
 
   const handleClick = async () => {
     setProgress(true);
