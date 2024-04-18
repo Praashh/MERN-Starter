@@ -2,7 +2,7 @@ import express from "express";
 import { Request, Response } from "express";
 import z from "zod";
 import { PrismaClient } from '@prisma/client'
-import { authMiddleware } from "../controllers/auth";
+import { authMiddleware } from "../middlewares/auth";
 import jwt from "jsonwebtoken";
 
 const prisma = new PrismaClient();
