@@ -1,6 +1,6 @@
 import Navbar from '@/components/ui/main-nav';
 import { toast } from '@/components/ui/use-toast';
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 
 const CreatePost = () => {
@@ -13,7 +13,7 @@ const CreatePost = () => {
           });
             navigate("/signup");
         }
-      }, []);
+      }, [navigate]);
   return (
     <div>
         <Navbar/>
