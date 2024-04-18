@@ -52,7 +52,7 @@ export function Hero() {
             >
               <Link
                 className="w-full justify-center flex items-center whitespace-nowrap transition duration-150 ease-in-out font-medium rounded px-4 py-1.5  text-zinc-900 bg-gradient-to-r from-white/80 via-white to-white/80 hover:bg-white group"
-                to="/signup"
+                to="/create-post"
               >
                 Get Started{" "}
                 <ArrowLeft className="w-3 h-3 rotate-180 tracking-normal text-primary-500 group-hover:translate-x-0.5 transition-transform duration-150 ease-in-out ml-1" />

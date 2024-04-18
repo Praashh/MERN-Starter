@@ -6,27 +6,27 @@ export const Features: React.FC = () => {
   const features = [
     {
       icon: Blinds,
-      name: "Ownership of Ad Spaces",
-      description: "Advertisers get direct ownership of the ad space, enabling them to update their ads at any time instantly.",
+      name: "Discover the Cutting Edge",
+      description: "X-Peerience offers a platform for enthusiasts to explore and discuss the forefront of technology.",
     },
     {
       icon: Check,
-      name: "Wide Range of network",
-      description: "Any publisher can list their ads they get access to every ad space that they can run their ads on.",
+      name: "Most Up-to-Date Experience",
+      description: "X-Peerience is a platform where tech enthusiasts can share their knowledge and experience with the community.",
     },
     {
       icon: Wallet,
-      name: "Seamless Transactions",
-      description: "Adxchain uses Solana blockchain and compressed NFTs known for very fast transaction rates at very low cost",
+      name: "Share Your Knowledge",
+      description: "X-Peerience offers a platform for enthusiasts to explore and discuss the forefront of technology.",
     },
     {
       icon: User,
-      name: "For Absolutely Everyone",
-      description: "All online platform publishers web apps, mobile apps, games, billboards, and beyond can list their ad spaces.",
+      name: "Contribute to the Community",
+      description: "X-Peerience is a platform where tech enthusiasts can share their knowledge and experience with the community.",
     },
   ];
   return (
-    <section>
+    <section className="overflow-x-hidden">
       <div className="relative max-w-6xl px-4 mx-auto sm:px-6">
         <div
           className="absolute inset-0 -z-10 -mx-28 rounded-t-[3rem] pointer-events-none overflow-hidden"
@@ -56,9 +56,7 @@ export const Features: React.FC = () => {
                     Features
                 </h3>
                 <p className="mb-8 text-lg text-zinc-400">
-                    adXchain is a decentralized marketplace for ad spaces. It
-                    connects advertisers directly with publishers, eliminating the
-                    need for middlemen and ensuring transparency and security.
+                   X-Peerience is a platform where tech enthusiasts can share their knowledge and experience with the community.
                 </p>
                 <dl className="max-w-xl grid grid-cols-1 gap-4 lg:max-w-none">
                   {features.map((feature) => (

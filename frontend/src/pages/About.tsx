@@ -29,7 +29,7 @@ export function About() {
                   About Us
                 </h3>
                 <p className="w-full mb-8 text-lg text-zinc-400">
-                    Interview X-Peerience is a platform where you can share your
+                    X-Peerience is a platform where you can share your
                     interview experiences with other developers. It helps you
                     prepare for your next interview by providing insights into the
                     interview process at top tech companies,

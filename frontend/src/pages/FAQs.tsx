@@ -5,23 +5,23 @@ export function FAQS() {
     return (
       <Accordion type="single" collapsible className="w-1/2">
         <AccordionItem value="item-1">
-          <AccordionTrigger>Is it accessible?</AccordionTrigger>
+          <AccordionTrigger>Who can join X-Peerience?</AccordionTrigger>
           <AccordionContent>
-            Yes. It adheres to the WAI-ARIA design pattern.
+            Anyone who is passionate about technology and wants to share their
+            knowledge with the community.
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="item-2">
-          <AccordionTrigger>Is it styled?</AccordionTrigger>
+          <AccordionTrigger>How can I contribute to X-Peerience??</AccordionTrigger>
           <AccordionContent>
-            Yes. It comes with default styles that matches the other
-            components&apos; aesthetic.
+            You can contribute by writing articles, sharing your projects, or
+            participating in discussions.
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="item-3">
-          <AccordionTrigger>Is it animated?</AccordionTrigger>
+          <AccordionTrigger>Is it free to use??</AccordionTrigger>
           <AccordionContent>
-            Yes. It&apos;s animated by default, but you can disable it if you
-            prefer.
+            Yes, X-Peerience is free to use for everyone.
           </AccordionContent>
         </AccordionItem>
       </Accordion>
