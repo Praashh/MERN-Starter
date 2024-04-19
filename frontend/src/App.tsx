@@ -1,14 +1,17 @@
-import './App.css'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { SignUpForm } from './pages/Signup'
 import  Home  from './pages/Home'
 import { LoginForm } from './pages/Login'
 import { ThemeProvider } from './components/theme-provider'
+import {
+  RecoilRoot,
+} from 'recoil';
 import CreatePost from './pages/CreatePost'
 function App() {
 
   return (
     <>
+     <RecoilRoot>
      <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
       <BrowserRouter>
           <Routes>
@@ -19,6 +22,7 @@ function App() {
           </Routes>
       </BrowserRouter>
      </ThemeProvider>
+     </RecoilRoot>
     </>
   )
 }

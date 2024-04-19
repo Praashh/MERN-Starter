@@ -7,7 +7,7 @@ import { MountainIcon } from "./nav-icon";
 export default function Navbar() {
   
   return (
-    <nav className="inset-x-0 top-0 z-50 bg-white shadow-sm dark:bg-gray-950/90">
+    <nav className="inset-x-0 fixed top-0 z-50 bg-white shadow-sm dark:bg-gray-950/90">
       <div className="w-full max-w-7xl mx-auto px-4">
         <div className="flex justify-between h-14 items-center">
           <Link className="flex items-center" to={"/"}>

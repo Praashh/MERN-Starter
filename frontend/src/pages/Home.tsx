@@ -1,8 +1,8 @@
 import Navbar from "@/components/ui/main-nav"
-import { Hero } from "./Hero"
-import { Features } from "./Features"
-import { About } from "./About"
-import {FAQS} from "./FAQs"
+import { Hero } from "../components/landing/Hero"
+import { Features } from "../components/landing/Features"
+import { About } from "../components/landing/About"
+import {FAQS} from "../components/landing/FAQs"
 import Footer from "@/components/ui/footer"
 
 const Home = () => {

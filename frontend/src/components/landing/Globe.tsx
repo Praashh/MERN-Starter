@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { World } from "../components/ui/Globe";
+import { World } from "../ui/Globe";
 // const World = dynamic(() => import("../components/ui/Globe").then((m) => m.World), {
 //   ssr: false,
 // });
