@@ -1,1 +1,1 @@
-## This is a starter template for MERN Stack Project
+X-Peerience is a platform where tech enthusiasts can share their knowledge and experience with the community.
