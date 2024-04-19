@@ -27,7 +27,7 @@ const TextEditor = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleChange = (text: any) => {
     setValue(text);
-    console.log(value);
+    console.log(value, image, heading);
   };
   return (
     <div className="w-full md:w-1/2 h-screen flex flex-col justify-evenly p-2 mt-10 md:mt-0 md:m-2">
