@@ -41,7 +41,7 @@ export function SignUpForm() {
         title: "Account created successfully",
       });
       localStorage.setItem("token", response.data.token);
-      localStorage.setItem("user", JSON.stringify(response.data.user.id));
+      localStorage.setItem("user", response.data.user.id);
       navigate("/");
     } else {
       setProgress(false);

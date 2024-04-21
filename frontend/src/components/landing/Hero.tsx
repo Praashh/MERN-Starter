@@ -31,7 +31,7 @@ export function Hero() {
               </div>
             </div>
             <h1
-              className="pb-4 font-extrabold tracking-tight text-transparent text-7xl lg:text-8xl  bg-clip-text bg-gradient-to-r from-zinc-200/60 via-zinc-200 to-zinc-200/60"
+              className="pb-4 font-extrabold tracking-tight text-transparent text-5xl md:text-6xl lg:text-8xl  bg-clip-text bg-gradient-to-r from-zinc-200/60 via-zinc-200 to-zinc-200/60"
               data-aos="fade-down"
             >
               <ReactWrapBalancer>

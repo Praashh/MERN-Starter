@@ -16,10 +16,10 @@ const CreatePost = () => {
         }
       }, [navigate]);
   return (
-    <>
+    <div>
         <Navbar/>
         <NewPost/>
-    </>
+    </div>
   )
 }
 
