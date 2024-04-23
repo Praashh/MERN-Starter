@@ -1,5 +1,5 @@
 import GlowTop from "@/assets/glow-top.svg";
-import img from "@/assets/adXchainProduct.png"
+import img from "@/assets/Demo.png"
 import { Blinds, Check, User, Wallet } from "lucide-react";
 
 export const Features: React.FC = () => {

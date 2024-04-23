@@ -32,8 +32,8 @@ const TextEditor = () => {
   return (
     <div className="w-full md:w-1/2 h-screen flex flex-col justify-evenly p-2 mt-10 md:mt-0 md:m-2">
       
-    <Input x-chunk="dashboard-07-chunk-3" placeholder="Title of Post" onChange={(e) => setHeading(e.target.value)}/>
-      <ReactQuill theme={"snow"} onChange={handleChange} className="h-[50vh]" placeholder="Content Of Post" />
+    <Input x-chunk="dashboard-07-chunk-3" placeholder="Title of Post" onChange={(e) => setHeading(e.target.value)} value={heading}/>
+      <ReactQuill theme={"snow"} onChange={handleChange} className="h-[50vh]" placeholder="Content Of Post" value={value}/>
       <Card className="overflow-hidden mt-24 md:mt-10" x-chunk="dashboard-07-chunk-4">
         <CardHeader>
           <CardTitle>Select Images</CardTitle>

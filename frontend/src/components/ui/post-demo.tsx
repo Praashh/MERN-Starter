@@ -53,7 +53,7 @@ const PostDemo = () => {
   }
 
   return (
-    <div className="flex flex-col gap-5 items-start justify-evenly p-4 md:p-0 relative">
+    <div className="flex flex-col gap-5 items-start justify-evenly p-4 md:p-0 relative h-96">
       <h1 className="text-2xl font-bold">Post Preview</h1>
       {heading && <h2 className="text-2xl font-extrabold">{heading}</h2>}
       {htmlContent && <div dangerouslySetInnerHTML={{ __html: htmlContent }} className="w-96" />}

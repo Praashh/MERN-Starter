@@ -42,6 +42,7 @@ export function SignUpForm() {
       });
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("user", response.data.user.id);
+      
       navigate("/");
     } else {
       setProgress(false);
