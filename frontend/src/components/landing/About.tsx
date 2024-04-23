@@ -46,7 +46,7 @@ export function About() {
                     <iframe
                       width="635"
                       height="420"
-                      src="https://www.youtube.com/embed/7O79afv8mUA?si=gy9RM4C-GdcbeM2_"
+                      src="https://www.youtube.com/embed/ajZtk6OswCs?si=_-x9VKRKgMfYYNG8"
                       title="YouTube video player"
                       frameBorder="0"
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
