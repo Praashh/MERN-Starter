@@ -41,7 +41,7 @@ const PostDemo = () => {
     setHeading("");
     setHtmlContent("");
     setImage("");
-    navigate("/");
+    navigate("/feed");
     } catch (error) {
       setLoading(false);
       toast({
