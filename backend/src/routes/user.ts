@@ -17,8 +17,6 @@ const userSchema = z.object({
 const router = express.Router();
 
 router.post("/register", async (req: Request, res: Response) => {
-  const body = req.body;
-  console.log(body);
   try {
     const user = userSchema.parse(req.body);
     const newUser = await prisma.user.create({
@@ -32,10 +30,11 @@ router.post("/register", async (req: Request, res: Response) => {
       { id: newUser.id },
       process.env.JWT_SECRET as string
     );
-    const isEmailSent = await sendEmail(user.email);
-    if (!isEmailSent.success) {
-      return res.status(500).json({ error: "Error sending email" });
-    }
+    // const isEmailSent = await sendEmail(user.email);
+    
+    // if (!isEmailSent.success) {
+    //   return res.status(500).json({ error: "Error sending email" });
+    // }
     res.status(201).json({ token: token, user: newUser });
   } catch (error: unknown) {
     const zodError = error as z.ZodError;
