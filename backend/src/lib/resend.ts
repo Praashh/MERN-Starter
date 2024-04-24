@@ -13,9 +13,8 @@ export async function sendEmail(email: string,):Promise<ResendAPIResponse>{
         from: "Acme <onboarding@resend.dev>",
         to: [email],
         subject: "Welcome to X-Peerience!",
-        html: "<strong>Thank you for signing up with us",
+        html: "<strong>Thank you for signing up with us!</strong>",
       });
-    
       if (error) {
         return {success: false};
       }
