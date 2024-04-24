@@ -7,6 +7,7 @@ import {
   RecoilRoot,
 } from 'recoil';
 import CreatePost from './pages/CreatePost'
+import Feed from './pages/Feed'
 function App() {
 
   return (
@@ -19,6 +20,7 @@ function App() {
             <Route element={<SignUpForm/>} path='/signup'/>
             <Route element={<LoginForm/>} path='/login'/>
             <Route element={<CreatePost/>} path='/create-post'/>
+            <Route element={<Feed/>} path='/feed'/>
           </Routes>
       </BrowserRouter>
      </ThemeProvider>
