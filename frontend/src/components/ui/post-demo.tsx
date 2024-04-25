@@ -26,7 +26,7 @@ const PostDemo = () => {
       return;
     }
     try {
-      const res = axios.post("http://localhost:3001/api/v1/post/create", {
+      const res = axios.post(`${import.meta.env.VITE_HOST_URL}/api/v1/user/register`, {
       title: heading,
       content: htmlContent,
       userId: localStorage.getItem("user"),
