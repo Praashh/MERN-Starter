@@ -14,3 +14,8 @@ export const postImage = atom({
     key: 'postImage',
     default: ''
 });
+
+export const postsCache = atom({
+    key: 'postsCache',
+    default: []
+});

@@ -1,19 +1,29 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Input } from "@/components/ui/input";
 import ExperienceCard from "../ui/experience-card";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import axios from "axios";
+import { useRecoilState } from "recoil";
+import { postsCache } from "@/store/atom/post";
 
 export default function FeedHero() {
-  const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useRecoilState(postsCache);
+  
   useEffect(() => {
+    if(posts.length > 0){
+      return ;
+    }
     async function getPosts() {
-      const res = await axios.get("http://localhost:3001/api/v1/post/all");
-      console.log(res.data.posts);
+      const res = await axios.get(`${import.meta.env.VITE_HOST_URL}/api/v1/post/all`);
       setPosts(res.data.posts);
     }
     getPosts();
+    
   });
+  const getDescription = (content: string) =>{
+    const stringWithoutHtmlTags = content.replace(/<[^>]*>?/gm, '');
+    return stringWithoutHtmlTags;
+  }
   return (
     <>
       <div className=" py-6 w-full mt-14">
@@ -43,7 +53,7 @@ export default function FeedHero() {
           <ExperienceCard
             key={post.id}
             heading={post.title}
-            description={post.content}
+            description={getDescription(post.content)}
           />
         ))}
       </div>
