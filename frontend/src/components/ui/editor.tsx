@@ -38,7 +38,7 @@ const TextEditor = () => {
         <CardHeader>
           <CardTitle>Select Images</CardTitle>
           <CardDescription>
-            Upload images to be used in your post.
+            Upload the Banner of your image
           </CardDescription>
         </CardHeader>
         <CardContent>

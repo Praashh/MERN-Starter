@@ -17,10 +17,12 @@ router.post("/create", async (req: Request, res: Response) => {
   const { success } = postSchema.safeParse(req.body);
   if (success) {
     try {
+      // Upload image on S3
       const newPost = await prisma.post.create({
         data: {
           title: body.title,
           content: body.content,
+          // send to the DB
           author: { connect: { id: body.userId } },
         },
       });

@@ -4,7 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "tsc && node dist/index.js"
+    "start": "ts-node src/index.ts",
+    "build": "tsc",
+    "dev":"tsc && node dist/index.js",
+    "prisma:docker": "npm run prisma:migrate && npm run db:seed && npm run studio",
+    "dev:docker": "npm run build & npm run start",
+    "prisma:migrate": "prisma migrate deploy",
+    "db:seed": "prisma db seed"
   },
   "keywords": [],
   "author": "",
@@ -27,6 +33,8 @@
     "@types/node": "^20.12.2",
     "@types/passport": "^1.0.16",
     "@types/passport-google-oauth20": "^2.0.14",
-    "prisma": "^5.12.1"
+    "prisma": "^5.12.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^4.5.4"
   }
 }

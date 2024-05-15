@@ -17,29 +17,34 @@ const userSchema = z.object({
 const router = express.Router();
 
 router.post("/register", async (req: Request, res: Response) => {
-  try {
-    const user = userSchema.parse(req.body);
-    const newUser = await prisma.user.create({
-      data: {
-        name: user.name,
-        email: user.email,
-        password: user.password,
-      },
-    });
-    const token = jwt.sign(
-      { id: newUser.id },
-      process.env.JWT_SECRET as string
-    );
-    // const isEmailSent = await sendEmail(user.email);
-    
-    // if (!isEmailSent.success) {
-    //   return res.status(500).json({ error: "Error sending email" });
-    // }
-    res.status(201).json({ token: token, user: newUser });
-  } catch (error: unknown) {
-    const zodError = error as z.ZodError;
-    res.status(400).json({ error: zodError.errors });
+  const {success} = userSchema.safeParse(req.body);
+  if(!success){
+    res.status(403).json({msg:"Inputs are incorrect"})
+  }else{
+    try {
+      const newUser = await prisma.user.create({
+        data: {
+          name: req.body.name,
+          email: req.body.email,
+          password: req.body.password,
+        },
+      });
+      const token = jwt.sign(
+        { id: newUser.id },
+        process.env.JWT_SECRET as string
+      );
+      // const isEmailSent = await sendEmail(user.email);
+      
+      // if (!isEmailSent.success) {
+      //   return res.status(500).json({ error: "Error sending email" });
+      // }
+      res.status(201).json({ token: token, user: newUser });
+    } catch (error: unknown) {
+      const zodError = error as z.ZodError;
+      res.status(400).json({ error: zodError.errors });
+    }
   }
+
 });
 
 router.post("/login", authMiddleware, async (req: Request, res: Response) => {
