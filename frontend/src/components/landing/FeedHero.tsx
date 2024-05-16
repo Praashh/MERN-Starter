@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Input } from "@/components/ui/input";
 import ExperienceCard from "../ui/experience-card";
 import { useEffect } from "react";
 import axios from "axios";
 import { useRecoilState } from "recoil";
 import { postsCache } from "@/store/atom/post";
+import SearchPost from "../ui/SearchPost";
 
 export default function FeedHero() {
   const [posts, setPosts] = useRecoilState(postsCache);
@@ -37,15 +37,7 @@ export default function FeedHero() {
               been there.
             </p>
           </div>
-          <div className="mx-auto max-w-sm">
-            <div className="relative">
-              <Input
-                className="pl-10"
-                placeholder="Search for a company or job title..."
-                type="search"
-              />
-            </div>
-          </div>
+        <SearchPost/>
         </div>
       </div>
       <div className="container grid max-w-7xl items-start gap-6 px-4 py-8 md:grid-cols-2 md:py-16 lg:gap-10 lg:px-6 xl:gap-12">

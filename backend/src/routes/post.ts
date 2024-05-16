@@ -35,7 +35,20 @@ router.post("/create", async (req: Request, res: Response) => {
     res.status(400).json({ error: "Invalid input" });
   }
 });
+router.get("/posts", async (req:Request, res:Response)=>{
+  // need to convert the string to lowercase to optimization
+  const posts = await prisma.post.findMany({
+    where: {
+      OR: [
+        { title: { contains: req.query.title as string } }, 
+        {company: {contains: req.query.company as string}}
+      ],
+    },
+  });
 
+  console.log(posts);
+  return res.json({posts})
+})
 router.get("/all", async (req: Request, res: Response) => {
   try {
     const posts = await prisma.post.findMany();
