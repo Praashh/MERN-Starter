@@ -57,7 +57,7 @@ const SearchPost = () => {
                     onChange={handleChange}
                     />
             </div>
-           {item && showRes&& <div className="bg-transparent rounded-lg border border-solid border-gray-200 shadow-lg h-48 p-3">
+           {item && showRes&& <div className="bg-transparent rounded-lg border border-solid border-gray-200 shadow-lg min-h-48 p-3">
                 <div>
                     {res.length>0?(
                         res.map((i)=>(
