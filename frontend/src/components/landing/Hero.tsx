@@ -1,6 +1,6 @@
 import { Particles } from "@/components/Particles";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Github } from "lucide-react";
+import { ArrowLeft, BookIcon } from "lucide-react";
 import {Link} from "react-router-dom";
 import ReactWrapBalancer from "react-wrap-balancer";
 
@@ -60,11 +60,10 @@ export function Hero() {
 
               <Link
                 className="w-full transition duration-150 ease-in-out bg-opacity-25 text-zinc-200 hover:text-white bg-zinc-900 hover:bg-opacity-30"
-                to="https://github.com/Praashh/MERN-Starter/"
-                target="_blank"
+                to="/feed"
               >
                 <Button variant={"ghost"}>
-                  Star on Github {" "} <Github className="w-4 h-4 ml-1" />
+                  Read Experiences {" "} <BookIcon className="w-4 h-4 ml-1" />
                 </Button>
               </Link>
             </div>

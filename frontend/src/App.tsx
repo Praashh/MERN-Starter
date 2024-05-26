@@ -8,6 +8,7 @@ import {
 } from 'recoil';
 import CreatePost from './pages/CreatePost'
 import Feed from './pages/Feed'
+import PostWithId from './pages/PostWithId'
 function App() {
 
   return (
@@ -21,6 +22,7 @@ function App() {
             <Route element={<LoginForm/>} path='/login'/>
             <Route element={<CreatePost/>} path='/create-post'/>
             <Route element={<Feed/>} path='/feed'/>
+            <Route element={<PostWithId/>} path='/post/:id'/>
           </Routes>
       </BrowserRouter>
      </ThemeProvider>

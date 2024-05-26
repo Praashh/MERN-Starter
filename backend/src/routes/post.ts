@@ -49,6 +49,21 @@ router.get("/posts", async (req:Request, res:Response)=>{
   console.log(posts);
   return res.json({posts})
 })
+router.get("/posts/:id", async (req:Request, res:Response)=>{
+  console.log(req.params.id);
+  try {
+    const post = await prisma.post.findUnique({
+      where: {
+        id: req.params.id
+      }
+    });
+    console.log(post);
+    res.status(200).json({post})
+  } catch (error) {
+     console.log(error);
+     res.status(400).json({msg:"Something Went Wrong!"})
+  }
+})
 router.get("/all", async (req: Request, res: Response) => {
   try {
     const posts = await prisma.post.findMany();

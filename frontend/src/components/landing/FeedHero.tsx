@@ -44,6 +44,7 @@ export default function FeedHero() {
         {posts.map((post: any) => (
           <ExperienceCard
             key={post.id}
+            id={post.id}
             heading={post.title}
             description={getDescription(post.content)}
           />
