@@ -2,13 +2,9 @@ import express from "express";
 import { Request, Response } from "express";
 import z from "zod";
 import { PrismaClient } from "@prisma/client";
+import { postSchema } from "../zodSchema/postSchema";
 
 const prisma = new PrismaClient();
-
-const postSchema = z.object({
-  title: z.string().min(1),
-  content: z.string().min(5),
-});
 
 const router = express.Router();
 

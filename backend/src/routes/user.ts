@@ -1,43 +1,50 @@
 import express from "express";
 import { Request, Response } from "express";
-import z from "zod";
+import {z} from "zod";
 import { PrismaClient } from "@prisma/client";
 import { authMiddleware } from "../middlewares/auth";
 import jwt from "jsonwebtoken";
+import bcrypt from "bcrypt";
 import { sendEmail } from "../lib/resend";
+import { userSchema } from "../zodSchema/userSchema";
 
 const prisma = new PrismaClient();
-
-const userSchema = z.object({
-  name: z.string().min(3),
-  email: z.string().email(),
-  password: z.string().min(6),
-});
 
 const router = express.Router();
 
 router.post("/register", async (req: Request, res: Response) => {
   const {success} = userSchema.safeParse(req.body);
   if(!success){
-    res.status(403).json({msg:"Inputs are incorrect"})
+    res.status(403).json({msg:"Inputs are incorrect"});
   }else{
     try {
+      const isUserExists = await prisma.user.findUnique({
+        where:{
+          name: req.body.name,
+          email: req.body.email,
+        }
+      });
+
+      if(isUserExists){
+        res.status(400).json({msg:"User already Exists!"});
+      }
+      const hashedPassword = await bcrypt.hash(req.body.password, 10);
       const newUser = await prisma.user.create({
         data: {
           name: req.body.name,
           email: req.body.email,
-          password: req.body.password,
+          password: hashedPassword,
         },
       });
       const token = jwt.sign(
         { id: newUser.id },
         process.env.JWT_SECRET as string
       );
-      // const isEmailSent = await sendEmail(user.email);
+      /*const isEmailSent = await sendEmail(req.body.email);
       
-      // if (!isEmailSent.success) {
-      //   return res.status(500).json({ error: "Error sending email" });
-      // }
+      if (!isEmailSent.success) {
+        return res.status(500).json({ error: "Error sending email" });
+      }*/
       res.status(201).json({ token: token, user: newUser });
     } catch (error: unknown) {
       const zodError = error as z.ZodError;
@@ -52,12 +59,14 @@ router.post("/login", authMiddleware, async (req: Request, res: Response) => {
   const user = await prisma.user.findFirst({
     where: {
       email: email,
-      password: password,
     },
   });
   if (!user) {
-    return res.status(400).json({ error: "Invalid email or password" });
+    return res.status(400).json({ error: "Invalid email!" });
   }
+  const isMatch = await bcrypt.compare(password, user.password);
+
+  if (!isMatch) return res.status(400).json({ error: "Invalid  password!" });
   res.status(200).json({ user, msg: "Login successful" });
 });
 
