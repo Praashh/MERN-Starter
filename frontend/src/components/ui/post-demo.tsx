@@ -30,7 +30,7 @@ const PostDemo = () => {
       title: heading,
       content: htmlContent,
       userId: localStorage.getItem("user"),
-    });
+    }, {withCredentials:true});
     console.log(heading, htmlContent, localStorage.getItem("user"));
     if((await res).status === 201){
       toast({
