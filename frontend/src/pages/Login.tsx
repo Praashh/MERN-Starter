@@ -23,21 +23,13 @@ export function LoginForm() {
 
   const handleClick = async () => {
     setProgress(true);
-    const token = `Bearer ${localStorage.getItem("token")}`;
+    console.log(email, password);
 
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_HOST_URL}/api/v1/user/login`,
-        {
-          email: email,
-          password: password,
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: token,
-          },
-        }
+        { email, password },
+        { withCredentials: true }
       );
 
       if (response.status === 200) {
@@ -45,7 +37,7 @@ export function LoginForm() {
         toast({
           title: "Logged in successfully",
         });
-        localStorage.setItem("user", JSON.stringify(response.data.user.id));
+        localStorage.setItem("user", response.data.success);
         navigate("/");
       }
     } catch (error) {
@@ -89,7 +81,7 @@ export function LoginForm() {
               />
             </div>
             <Button type="submit" className="w-full" onClick={handleClick}>
-            {progress ?  <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : "Login"}
+              {progress ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : "Login"}
             </Button>
           </div>
           <div className="mt-4 text-center text-sm">

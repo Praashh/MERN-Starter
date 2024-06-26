@@ -6,15 +6,17 @@ import { useNavigate } from 'react-router-dom';
 
 const CreatePost = () => {
     const navigate = useNavigate();
-    useEffect(() => {
-        if(!localStorage.getItem("token")){
-          toast({
-            variant: "destructive",
-            title: "You are not logged in",
-          });
-            navigate("/signup");
-        }
-      }, [navigate]);
+    useEffect(()=>{
+      if(localStorage.getItem("user")){
+      }else{
+        toast({
+          variant: "destructive",
+          title: "You are not logged in",
+        });
+          navigate("/signup");
+      }
+    });
+  
   return (
     <div>
         <Navbar/>

@@ -25,7 +25,9 @@ const SearchPost = () => {
         timeoutId = setTimeout(async () => {
             if (value) {
                 try {
-                    const res = await axios.get(`${import.meta.env.VITE_HOST_URL}/api/v1/post/posts?title=${value}`);
+                    const res = await axios.get(`${import.meta.env.VITE_HOST_URL}/api/v1/post/posts?title=${value}`, {withCredentials:true});
+                    console.log(res.data);
+                    
                     setRes(res.data.posts);
                 } catch (error) {
                     setRes([]);

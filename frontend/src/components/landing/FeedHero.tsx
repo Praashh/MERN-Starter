@@ -14,7 +14,9 @@ export default function FeedHero() {
       return ;
     }
     async function getPosts() {
-      const res = await axios.get(`${import.meta.env.VITE_HOST_URL}/api/v1/post/all`);
+      const res = await axios.get(`${import.meta.env.VITE_HOST_URL}/api/v1/post/all`, {
+        withCredentials:true
+      });
       setPosts(res.data.posts);
     }
     getPosts();
@@ -40,6 +42,7 @@ export default function FeedHero() {
         <SearchPost/>
         </div>
       </div>
+      {!posts ?<>Loading...</>:
       <div className="container grid max-w-7xl items-start gap-6 px-4 py-8 md:grid-cols-2 md:py-16 lg:gap-10 lg:px-6 xl:gap-12">
         {posts.map((post: any) => (
           <ExperienceCard
@@ -50,6 +53,7 @@ export default function FeedHero() {
           />
         ))}
       </div>
+      }
     </>
   );
 }

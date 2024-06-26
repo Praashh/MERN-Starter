@@ -14,6 +14,8 @@ import { useState } from "react";
 import { Loader2 } from "lucide-react";
 import { toast } from "@/components/ui/use-toast";
 import { ToastAction } from "@radix-ui/react-toast";
+import { useRecoilValue } from "recoil";
+import { userAuth } from "@/store/atom/user";
 
 export function SignUpForm() {
   const navigate = useNavigate();
@@ -21,30 +23,31 @@ export function SignUpForm() {
   const [progress, setProgress] = useState(false);
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const userAuthStatus = useRecoilValue(userAuth);
 
- 
+console.log("userAuthStatus", userAuthStatus);
 
   const handleClick = async () => {
     setProgress(true);
     console.log(name, email, password, "clicked");
-    const response = await axios.post(
-      `${import.meta.env.VITE_HOST_URL}/api/v1/user/register`,
-      {
-        name: name,
-        email: email,
-        password: password,
-      }
-    );
-    if (response.status === 201) {
-      setProgress(false);
-      toast({
-        title: "Account created successfully",
-      });
-      localStorage.setItem("token", response.data.token);
-      localStorage.setItem("user", response.data.user.id);
+    try {
+      const response = await axios.post(
+        `${import.meta.env.VITE_HOST_URL}/api/v1/user/register`,
+        {  name, email, password},
+        {  withCredentials: true }
+      );
+      console.log("response ", response);
       
-      navigate("/");
-    } else {
+
+      if (response.status === 201) {
+        setProgress(false);
+        localStorage.setItem("user", response.data.success)
+        toast({
+          title: "Account created successfully",
+        });
+        navigate("/");
+      }
+    } catch (error) {
       setProgress(false);
       toast({
         variant: "destructive",
@@ -54,6 +57,7 @@ export function SignUpForm() {
       });
     }
   };
+
   return (
     <div className="h-screen w-full flex justify-center items-center">
       <Card className="mx-auto max-w-sm">
@@ -94,7 +98,7 @@ export function SignUpForm() {
               />
             </div>
             <Button type="submit" className="w-full" onClick={handleClick}>
-              {progress ?  <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : "Create an account"}
+              {progress ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : "Create an account"}
             </Button>
           </div>
           <div className="mt-4 text-center text-sm">
