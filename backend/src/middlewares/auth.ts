@@ -4,13 +4,14 @@ import { JwtPayload } from "jsonwebtoken";
 
 
 const authMiddleware = (req: Request, res: Response, next: () => void) => {
-  const authHeader = req.headers.authorization;
-  console.log(authHeader);
-  if (!authHeader || !authHeader.startsWith("Bearer ")) {
-    return res.status(403).json({ error: "Token not provided" });
-  }
-
-  const token = authHeader.split(" ")[1];
+  const { token } = req.cookies;
+  console.log(token);
+  
+  if (!token)
+    return res.status(400).json({
+      success: false,
+      message: "Error You have to login First!",
+    });
 
   try {
     if (!process.env.JWT_SECRET) {
@@ -20,7 +21,9 @@ const authMiddleware = (req: Request, res: Response, next: () => void) => {
       token,
       process.env.JWT_SECRET as string
     ) as JwtPayload;
-    req.body.userId = payload.userId;
+    console.log(payload);
+    
+    req.body.userId = payload.id;
     next();
   } catch (error) {
     return res.status(401).json({ error: "Token invalid" });
